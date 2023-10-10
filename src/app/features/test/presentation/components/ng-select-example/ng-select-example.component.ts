@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Car } from '../../../domain/entities/car.model';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-ng-select-example',
@@ -9,6 +10,7 @@ import { Car } from '../../../domain/entities/car.model';
 export class NgSelectExampleComponent implements OnInit {
   selectedCar?: number;
   cars: Car[];
+  form: FormGroup;
 
   constructor() {
     this.cars = [
@@ -29,9 +31,21 @@ export class NgSelectExampleComponent implements OnInit {
         name: 'Audi',
       },
     ]
+    this.form = new FormGroup({
+      selectedCar: new FormControl(undefined, [
+        Validators.required,
+      ])
+    })
   }
 
   ngOnInit(): void {
   }
 
+  get selectedCarForm() { return this.form.get('selectedCar') as FormControl }
+
+  setSelectedCar(e: number) {
+    this.form.patchValue({
+      selectedCar: e
+    });
+  }
 }

@@ -1,5 +1,7 @@
 <p>ng-select-example works!</p>
 
+<div>{{selectedCar}}</div>
+
 <div>Using ng-option and for loop</div>
 <!--Using ng-option and for loop-->
 <ng-select [(ngModel)]="selectedCar">
@@ -7,9 +9,25 @@
  </ng-select>
  
 <div>Using items input</div>
- <!--Using items input-->
- <ng-select [items]="cars" 
-            bindLabel="name" 
-            bindValue="id" 
-            [(ngModel)]="selectedCar">
- </ng-select>
+<!--Using items input-->
+<ng-select [items]="cars" 
+        bindLabel="name" 
+        bindValue="id" 
+        [(ngModel)]="selectedCar">
+</ng-select>
+
+<div>Using form: {{ this.form.get('selectedCar')?.value }}</div>
+<form [formGroup]="this.form">
+    <div>Using formControlName</div>
+    <ng-select [items]="cars" bindLabel="name" bindValue="id" formControlName="selectedCar"></ng-select>
+
+    <div>Using [formControl]</div>
+    <ng-select [formControl]="this.selectedCarForm">
+        <ng-option *ngFor="let car of cars" [value]="car.id">{{car.name}}</ng-option>
+    </ng-select>
+
+    <div>Using (change)</div>
+    <ng-select (change)="setSelectedCar($event)">
+        <ng-option *ngFor="let car of cars" [value]="car.id">{{car.name}}</ng-option>
+    </ng-select>
+</form>
