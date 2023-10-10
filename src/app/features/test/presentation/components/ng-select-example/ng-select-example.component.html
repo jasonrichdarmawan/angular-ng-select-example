@@ -30,4 +30,9 @@
     <ng-select (change)="setSelectedCar($event)">
         <ng-option *ngFor="let car of cars" [value]="car.id">{{car.name}}</ng-option>
     </ng-select>
+
+    <div>Using (change) and [formControl]</div>
+    <ng-select (change)="setSelectedCar($event)" [formControl]="this.selectedCarForm">
+        <ng-option *ngFor="let car of cars" [value]="car.id">{{car.name}}</ng-option>
+    </ng-select>
 </form>
