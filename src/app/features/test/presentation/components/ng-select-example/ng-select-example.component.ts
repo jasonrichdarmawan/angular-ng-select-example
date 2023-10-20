@@ -30,6 +30,30 @@ export class NgSelectExampleComponent implements OnInit {
         id: 4,
         name: 'Audi',
       },
+      {
+        id: 5,
+        name: 'Audi',
+      },
+      {
+        id: 6,
+        name: 'Audi',
+      },
+      {
+        id: 7,
+        name: 'Audi',
+      },
+      {
+        id: 8,
+        name: 'Audi',
+      },
+      {
+        id: 9,
+        name: 'Audi',
+      },
+      {
+        id: 10,
+        name: 'Audi',
+      },
     ]
     this.form = new FormGroup({
       selectedCar: new FormControl(undefined, [
