@@ -3,17 +3,29 @@
 <div>{{selectedCar}}</div>
 
 <div>Using ng-option and for loop</div>
-<!--Using ng-option and for loop-->
-<ng-select [(ngModel)]="selectedCar">
+<!--
+    Using ng-option and for loop
+    appendTo="body" to fix <ng-select> dropdown not showing up in dialog
+    this is unnecessary when there is enough height.
+    reference: https://stackoverflow.com/questions/61011313/ng-select-dropdown-is-hidden-by-the-dialog
+    encapsuling the <ng-select> in a <form> element will make <ng-select> to dropup if there is no enough space.
+-->
+<ng-select 
+    [(ngModel)]="selectedCar"
+    appendTo="body"
+>
     <ng-option *ngFor="let car of cars" [value]="car.id">{{car.name}}</ng-option>
- </ng-select>
+</ng-select>
  
 <div>Using items input</div>
-<!--Using items input-->
-<ng-select [items]="cars" 
-        bindLabel="name" 
-        bindValue="id" 
-        [(ngModel)]="selectedCar">
+<!-- Using items input -->
+<ng-select 
+    [items]="cars" 
+    bindLabel="name" 
+    bindValue="id" 
+    [(ngModel)]="selectedCar"
+    appendTo="body"
+>
 </ng-select>
 
 <div>Using form: {{ this.form.get('selectedCar')?.value }}</div>
